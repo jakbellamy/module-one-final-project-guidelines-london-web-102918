@@ -1,4 +1,4 @@
-
+"New York City"
 class Brewery < ActiveRecord::Base
     has_many :beers
     has_many :styles, through :beers

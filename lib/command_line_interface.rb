@@ -9,19 +9,16 @@ def login_prompt
 end
 
 
-def brewery_search_request
-
+def brewery_search_request_help
   puts "Type '1' to search by Brewery Name"
   puts  "Type '2' to search by your location" 
   puts "Type '3' to search  by a new Location"
-
-  gets.chomp
-
 end
+asdfasdf
 
-def brewery_search_by_name(brewery_search_request)
+def brewery_search_request_test(user_input)
 
-  case
+  case brew
     if brewery_search_request = 1
         Brewery.find_by(name)
 end

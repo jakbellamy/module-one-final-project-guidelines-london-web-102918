@@ -1,3 +1,5 @@
+require 'csv'
+
 # --- user seed data --- #
 
  users = User.create([
@@ -18,3 +20,12 @@
  {:name => "Lucy", :city => "Philidelphia", :country => "United States", :age => 29, :email => "lucy@beerme.com", :password => "password"},
  {:name => "Sam", :city => "Phoenix", :country => "United States", :age => 33, :email => "sam@beerme.com", :password => "password"},
 ])
+
+
+CSV.foreach("./openbeerdb_csv/styles.csv", headers: true) do |row|
+  Style.create(name: row.field("style_name"))
+end
+
+# CSV.foreach("./openbeerdb_csv/styles.csv", headers: true) do |row|
+#   Style.create(name: row.field("style_name"))
+# end

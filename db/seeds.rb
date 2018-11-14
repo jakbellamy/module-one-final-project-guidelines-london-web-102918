@@ -36,3 +36,13 @@ CSV.foreach("./openbeerdb_csv/beers.csv", headers: true) do |row|
   style_id: row.field("style_id"),
   abv: row.field("abv"))
 end
+
+# --- brewery seed data --- #
+
+CSV.foreach("./openbeerdb_csv/breweries.csv", headers: true) do |row|
+  Brewery.create(
+  name: row.field("name"),
+  city: row.field("city"),
+  country: row.field("country"),
+  url: row.field("website"))
+end

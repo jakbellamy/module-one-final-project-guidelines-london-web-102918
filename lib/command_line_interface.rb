@@ -49,7 +49,8 @@ end
 
 def beer_by_brewery
   user_input = get_user_input
-  Beer.find_by(name: user_input)
+  beers = Beer.select {|beer| beer.brewery.name == user_input}
+
 end
 
 def beer_by_abv

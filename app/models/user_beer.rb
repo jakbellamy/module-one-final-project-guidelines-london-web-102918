@@ -1,4 +1,4 @@
-class Had < ActiveRecord::Base
+class UserBeer < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :beer

@@ -5,5 +5,6 @@ class CreateBeers < ActiveRecord::Migration[5.2]
       t.float :abv
       t.integer :style_id
       t.integer :brewery_id
+    end
   end
 end

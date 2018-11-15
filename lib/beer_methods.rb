@@ -18,6 +18,8 @@ def find_beer
   else
     invalid_input
   end
+  options_reminder
+  find_beer
 end
 
 def beer_search_options
@@ -38,10 +40,14 @@ def beer_by_name
   puts "Type here:"
   user_input = gets.chomp
   beer = Beer.find_by(name: user_input)
-  puts "- - - - - - - - - - - - -"
-  puts "#{beer.name} is a/an #{beer.style.name} made by #{beer.brewery.name}, with an abv of #{beer.abv}"
-  puts "- - - - - - - - - - - - -"
-  main_menu_options
+    if beer
+      puts "- - - - - - - - - - - - -"
+      puts "#{beer.name} is a/an #{beer.style.name} made by #{beer.brewery.name}, with an abv of #{beer.abv}"
+      puts "- - - - - - - - - - - - -"
+    else
+    input_not_found
+    beer_by_name
+  end
 end
 
 def beer_by_brewery

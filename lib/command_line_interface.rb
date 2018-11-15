@@ -80,9 +80,10 @@ def beer_search_options
 end
 
 def beer_by_name
-  user_input = gets.chomp
+  "Please enter the name of your beer"
+  user_input = gets.chomp.downcase.capitalize
   beer = Beer.find_by(name: user_input)
-  puts "#{beer.name} is a #{beer.style.name} made by #{beer.brewery.name}, with an abv of #{beer.abv}"
+  puts "#{beer.name} is a/an #{beer.style.name} made by #{beer.brewery.name}, with an abv of #{beer.abv}"
 end
 
 def beer_by_brewery

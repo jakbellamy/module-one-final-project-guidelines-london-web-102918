@@ -5,6 +5,7 @@
 # log in asks for name or email and validates input
 # if no record found suggest checking spelling or creating a new account
 # if user found asks for password
+# gem to star out password entry
 # if password is correct goes to main menu
 # if not correct suggest checking spelling or creating a new account
 

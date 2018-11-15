@@ -1,5 +1,7 @@
 require_all 'app'
 
+#----WELCOME AND LOGIN----
+
 def welcome
   puts "Welcome to BeerMe, oh seeker of beer and all its attendant delights!"
 end
@@ -8,6 +10,8 @@ def login_prompt
   puts "Please enter your user name"
   gets.chomp.downcase
 end
+
+#----MAIN MENU----
 
 def help_list_of_commands
   puts "MAIN MENU"
@@ -22,16 +26,22 @@ end
   help_list_of_commands
 end
 
+#----STYLES----
+
 def list_beer_styles
   Style.all.map do |s|
     "#{s.name} (catalogue number: #{s.id})"
   end
 end
 
+#----BEER ME RANDOM GENERATOR----
+
 def beer_me
   random_beer = Beer.all.sample
   "Too lazy (or drunk) to choose your own beer? No problem! Why don't you try the #{random_beer.name} made by #{random_beer.brewery.name}? With an ABV of #{random_beer.abv}, it's sure to warm your cockles (if that's your thing)!"
 end
+
+#----BREWERY METHODS----
 
 def brewery_search_request_help
   puts "Type '1' to search by Brewery Name"
@@ -53,6 +63,8 @@ end
 def invalid_input
   puts "Please enter a valid command"
 end
+
+#----BEER SEARCH METHODS----
 
 def find_beer
   beer_search_options

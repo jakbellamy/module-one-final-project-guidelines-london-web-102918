@@ -16,6 +16,8 @@ def find_beer
     beer_by_style
   when "main"
     main_menu_options
+  when "log out"
+    log_out
   else
     invalid_input
   end
@@ -31,7 +33,8 @@ def beer_search_options
   puts "Please type '2' to search by brewery"
   puts "Please type '3' to search by abv"
   puts "Please type '4' to search by style"
-  puts "Please type 'main' at any time to return to the MAIN MENU"
+  puts "You can type 'main' at any time to return to the Main Menu"
+  puts "Or type 'log out' to quit BeerMe.... We'll miss you!"
   add_beer_icons
 end
 

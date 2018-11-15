@@ -35,6 +35,8 @@ def beer_me_again_options
     beer_me_again
   when "main"
     main_menu_options
+  when "log out"
+    log_out
   else
     invalid_input
   end

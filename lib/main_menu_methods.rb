@@ -9,7 +9,7 @@ def main_menu_options_prompt
   puts "Please type '3' to search for a brewery"
   puts "Please type '4' to see a list of all beer styles"
   puts "You can type 'main' at any time to return to the Main Menu"
-  puts "Or type 'exit' to quit BeerMe.... We'll miss you!"
+  puts "Or type 'log out' to quit BeerMe.... We'll miss you!"
   add_beer_icons
 end
 
@@ -28,9 +28,10 @@ def main_menu_options
       list_beer_styles
     when "main"
       main_menu_options
-    when "exit"
+    when "log out"
       log_out
     else
       invalid_input
+      main_menu_options
   end
 end

@@ -38,4 +38,4 @@ def add_beer_icons
   puts ""
   puts "\u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A}"
   puts ""
-  end
+end

@@ -14,7 +14,6 @@ def brewery_search_request_help
   puts  "Type '2' to search by your location" 
   puts "Type '3' to search  by a new Location"
 end
-asdfasdf
 
 def brewery_search_request_test(user_input)
 

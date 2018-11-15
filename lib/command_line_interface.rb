@@ -46,7 +46,7 @@ end
 
 def list_beer_styles
   Style.all.map do |s|
-    "#{s.name} (catalogue number: #{s.id})"
+  puts "#{s.name} (catalogue number: #{s.id})"
   end
 end
 
@@ -54,8 +54,9 @@ end
 
 def beer_me
   random_beer = Beer.all.sample
-  "Too lazy (or drunk) to choose your own beer? No problem! Why don't you try the #{random_beer.name} made by #{random_beer.brewery.name}? With an ABV of #{random_beer.abv}, it's sure to warm your cockles (if that's your thing)!"
+    puts "Too lazy (or drunk) to choose your own beer? No problem! Why don't you try the #{random_beer.name} made by #{random_beer.brewery.name}? With an ABV of #{random_beer.abv}, it's sure to warm your cockles (if that's your thing)!"
 end
+
 
 
 # def get_user_input
@@ -103,22 +104,24 @@ def beer_by_name
 end
 
 def beer_by_brewery
-  "Please enter the name of a brewery to see their beers"
+  puts "Please enter the name of a brewery to see their beers"
   user_input = gets.chomp
-  beers = Beer.select {|beer| beer.brewery.name == user_input}
-  puts beers
+  brewery = Brewery.find_by(name: user_input)
+  beers = brewery.beers
+  beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
 end
 
 def beer_by_abv
-  "Please enter an abv to see beers with a similar abv"
+  puts "Please enter an abv to see ten beers with a similar abv"
   user_input = gets.chomp.to_f
-  beers = Beer.select {|beer| beer.abv == (user_input)} # between?(user_input +0.5, user_input -0.5)
-  beers.first(10)
-  beers.map {|beer| puts "beer.name, beer.brewery.name, beer.abv"}
+  beers = Beer.all.select {|beer| beer.abv == user_input}.sample(10) # (user_input >= 1 || user_input <= 1)}
+  beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
 end
 
 def beer_by_style
-  user_input = gets.chomp.downcase.capitalize
-  beers = Beer.select {|beer| beer.style == user_input}
-  beers.first(10)
+  puts "Please enter the name of a style to see beers of that style"
+  user_input = gets.chomp
+  style = Style.find_by(name: user_input)
+  beers = style.beers
+  beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
 end

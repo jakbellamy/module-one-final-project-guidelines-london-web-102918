@@ -23,7 +23,6 @@ def main_menu_options_prompt
   puts "Please type 'main' at any time to return to the MAIN MENU"
 end
 
-<<<<<<< HEAD
 def main_menu_options
   main_menu_options_prompt
   user_input = gets.chomp
@@ -41,10 +40,6 @@ def main_menu_options
     else
       invalid_input
   end
-=======
-def help
-  help_list_of_commands
->>>>>>> finish-find-a-beer
 end
 
 #----STYLES----

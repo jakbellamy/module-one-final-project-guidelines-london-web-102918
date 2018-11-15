@@ -18,5 +18,18 @@ def invalid_input
   puts "- - - - - - - - - - - - -"
   puts "Please enter a valid command"
   puts "- - - - - - - - - - - - -"
-  main_menu_options
+end
+
+def options_reminder
+  puts "- - - - - - - - - - - - -"
+  puts "Press enter for a reminder of the options"
+  puts "- - - - - - - - - - - - -"
+  gets.chomp
+end
+
+def input_not_found
+  puts "- - - - - - - - - - - - -"
+  puts "Alas, that cannot be found. Please check your spelling, perhaps? Press enter to try again"
+  puts "- - - - - - - - - - - - -"
+  gets.chomp
 end

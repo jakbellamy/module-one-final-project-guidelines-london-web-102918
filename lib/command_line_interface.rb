@@ -1,6 +1,5 @@
 require_all 'app'
 
-
 def welcome
   puts "Welcome to BeerMe, oh seeker of beer and all its attendant delights!"
 end

@@ -39,3 +39,9 @@ def add_beer_icons
   puts "\u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A}"
   puts ""
 end
+
+def log_out
+  add_beer_icons
+  puts "Had enough beer, eh? See you next time!"
+  add_beer_icons
+end

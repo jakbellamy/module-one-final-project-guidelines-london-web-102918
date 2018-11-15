@@ -5,6 +5,11 @@ class User < ActiveRecord::Base
   has_many :styles, through: :beers
   has_many :breweries, through: :beers
 
+<<<<<<< HEAD
+  # 
+=======
+
+>>>>>>> finish-find-a-beer
   # Welcome
   # Please type your command. You can search or log a drink.
   # # Search

@@ -46,7 +46,7 @@ end
 
 def list_beer_styles
   Style.all.map do |s|
-    "#{s.name} (catalogue number: #{s.id})"
+  puts "#{s.name} (catalogue number: #{s.id})"
   end
 end
 
@@ -54,9 +54,10 @@ end
 
 def beer_me
   random_beer = Beer.all.sample
-  "Too lazy (or drunk) to choose your own beer? No problem! Why don't you try the #{random_beer.name} made by #{random_beer.brewery.name}? With an ABV of #{random_beer.abv}, it's sure to warm your cockles (if that's your thing)!"
+    puts "Too lazy (or drunk) to choose your own beer? No problem! Why don't you try the #{random_beer.name} made by #{random_beer.brewery.name}? With an ABV of #{random_beer.abv}, it's sure to warm your cockles (if that's your thing)!"
 end
 
+<<<<<<< HEAD
 #----BREWERY METHODS----
 
 # def brewery_search_request_help
@@ -72,6 +73,8 @@ end
 #   end
 # end
 
+=======
+>>>>>>> 41a4831efe369491c2cff27ad808418c7a3c5666
 # def get_user_input
 #   gets.strip
 # end

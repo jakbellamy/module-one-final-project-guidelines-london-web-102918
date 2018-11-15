@@ -26,6 +26,8 @@ def main_menu_options
       find_brewery
     when "4"
       list_beer_styles
+    when "5"
+      user_account_loop
     when "main"
       main_menu_options
     when "log out"

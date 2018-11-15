@@ -5,7 +5,7 @@
 # log in asks for name or email and validates input
 # if no record found suggest checking spelling or creating a new account
 # if user found asks for password
-# gem to star out password entry
+# gem to star out password entry https://stackoverflow.com/questions/2338889/how-to-hide-password-input-from-terminal-in-ruby-script
 # if password is correct goes to main menu
 # if not correct suggest checking spelling or creating a new account
 
@@ -15,13 +15,6 @@
 # personalised welcome
 # main menu options now including including log out option which re-runs the whole file
 
-# methods below are inside the my account menu branch of the main menu
-# start with most basic methods - adding to user_beers by name to create the join between beers and users
-
-# see user_beers - realitively easy
-# add to user_beers harder - how?
-
-# add beer by name
  $user = "user"
 
 def log_in

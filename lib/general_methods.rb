@@ -33,3 +33,9 @@ def input_not_found
   puts "- - - - - - - - - - - - -"
   gets.chomp
 end
+
+def add_beer_icons
+  puts ""
+  puts "\u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A} \u{1F37A}"
+  puts ""
+  end

@@ -58,20 +58,6 @@ def beer_me
 end
 
 #----BREWERY METHODS----
-<<<<<<< HEAD
-#
-# def brewery_search_request_help
-#   puts "Type '1' to search by Brewery Name"
-#   puts  "Type '2' to search by your location"
-#   puts "Type '3' to search  by a new Location"
-# end
-#
-# def brewery_search_request_test(user_input)
-#
-#   case brew
-#     if brewery_search_request = 1
-#         Brewery.find_by(name)
-=======
 
 # def brewery_search_request_help
 #   puts "Type '1' to search by Brewery Name"
@@ -84,7 +70,6 @@ end
 #   when brewery_search_request == 1
 #         Brewery.find_by(name)
 #   end
->>>>>>> finish-find-a-beer
 # end
 
 # def get_user_input

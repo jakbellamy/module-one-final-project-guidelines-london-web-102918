@@ -39,6 +39,6 @@ def beer_me_again_options
     log_out
   else
     invalid_input
+    beer_me_again_options
   end
-  beer_me_again_options
 end

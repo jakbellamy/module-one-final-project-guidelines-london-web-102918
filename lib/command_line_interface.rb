@@ -23,6 +23,7 @@ def main_menu_options_prompt
   puts "Please type 'main' at any time to return to the MAIN MENU"
 end
 
+<<<<<<< HEAD
 def main_menu_options
   main_menu_options_prompt
   user_input = gets.chomp
@@ -40,6 +41,10 @@ def main_menu_options
     else
       invalid_input
   end
+=======
+def help
+  help_list_of_commands
+>>>>>>> finish-find-a-beer
 end
 
 #----STYLES----
@@ -58,6 +63,7 @@ def beer_me
 end
 
 #----BREWERY METHODS----
+<<<<<<< HEAD
 #
 # def brewery_search_request_help
 #   puts "Type '1' to search by Brewery Name"
@@ -70,6 +76,20 @@ end
 #   case brew
 #     if brewery_search_request = 1
 #         Brewery.find_by(name)
+=======
+
+# def brewery_search_request_help
+#   puts "Type '1' to search by Brewery Name"
+#   puts "Type '2' to search by your location"
+#   puts "Type '3' to search  by a new location"
+# end
+#
+# def brewery_search_request_test(user_input)
+#   case brew
+#   when brewery_search_request == 1
+#         Brewery.find_by(name)
+#   end
+>>>>>>> finish-find-a-beer
 # end
 
 # def get_user_input
@@ -110,26 +130,29 @@ def beer_search_options
 end
 
 def beer_by_name
-  "Please enter the name of your beer"
-  user_input = gets.chomp.downcase.capitalize
+  puts "Please enter the name of your beer"
+  user_input = gets.chomp
   beer = Beer.find_by(name: user_input)
   puts "#{beer.name} is a/an #{beer.style.name} made by #{beer.brewery.name}, with an abv of #{beer.abv}"
 end
 
 def beer_by_brewery
+  "Please enter the name of a brewery to see their beers"
   user_input = gets.chomp
   beers = Beer.select {|beer| beer.brewery.name == user_input}
   puts beers
 end
 
 def beer_by_abv
-  user_input = gets.chomp
-  beers = Beer.select {|beer| beer.abv == (user_input)}
+  "Please enter an abv to see beers with a similar abv"
+  user_input = gets.chomp.to_f
+  beers = Beer.select {|beer| beer.abv == (user_input)} # between?(user_input +0.5, user_input -0.5)
   beers.first(10)
+  beers.map {|beer| puts "beer.name, beer.brewery.name, beer.abv"}
 end
 
 def beer_by_style
-  user_input = gets.chomp
+  user_input = gets.chomp.downcase.capitalize
   beers = Beer.select {|beer| beer.style == user_input}
   beers.first(10)
 end

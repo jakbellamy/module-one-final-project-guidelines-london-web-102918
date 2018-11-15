@@ -13,17 +13,33 @@ end
 
 #----MAIN MENU----
 
-def help_list_of_commands
+def main_menu_options_prompt
   puts "MAIN MENU"
+  puts "- - - - - - - - - - - - -"
   puts "Please type '1' if you want BeerMe to BeerYou!"
   puts "Please type '2' to search for a beer"
   puts "Please type '3' to search for a brewery"
   puts "Please type '4' to see a list of all beer styles"
-  puts "Please type 'help' at any time to return to the MAIN MENU"
+  puts "Please type 'main' at any time to return to the MAIN MENU"
 end
 
- def help
-  help_list_of_commands
+def main_menu_options
+  main_menu_options_prompt
+  user_input = gets.chomp
+  case user_input
+    when "1"
+      beer_me
+    when "2"
+      find_beer
+    when "3"
+      find_brewery
+    when "4"
+      list_beer_styles
+    when "main"
+      main_menu_options
+    else
+      invalid_input
+  end
 end
 
 #----STYLES----
@@ -42,19 +58,19 @@ def beer_me
 end
 
 #----BREWERY METHODS----
-
-def brewery_search_request_help
-  puts "Type '1' to search by Brewery Name"
-  puts  "Type '2' to search by your location"
-  puts "Type '3' to search  by a new Location"
-end
-
-def brewery_search_request_test(user_input)
-
-  case brew
-    if brewery_search_request = 1
-        Brewery.find_by(name)
-end
+#
+# def brewery_search_request_help
+#   puts "Type '1' to search by Brewery Name"
+#   puts  "Type '2' to search by your location"
+#   puts "Type '3' to search  by a new Location"
+# end
+#
+# def brewery_search_request_test(user_input)
+#
+#   case brew
+#     if brewery_search_request = 1
+#         Brewery.find_by(name)
+# end
 
 # def get_user_input
 #   gets.strip
@@ -78,13 +94,15 @@ def find_beer
   when "3"
     beer_by_abv
   when "4"
-    beer_by__style
+    beer_by_style
   else
     invalid_input
   end
 end
 
 def beer_search_options
+  puts "BEER SEARCH"
+  puts "- - - - - - - - - - - - -"
   puts "Please type '1' to search by name"
   puts "Please type '2' to search by brewery"
   puts "Please type '3' to search by abv"
@@ -115,5 +133,3 @@ def beer_by_style
   beers = Beer.select {|beer| beer.style == user_input}
   beers.first(10)
 end
-#
-find_beer

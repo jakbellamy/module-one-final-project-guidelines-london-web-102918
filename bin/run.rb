@@ -1,7 +1,5 @@
 require_relative '../config/environment'
-<<<<<<< HEAD
 
-
-puts "HELLO WORLD"
-=======
->>>>>>> find-a-beer
+welcome
+puts "- - - - - - - - - - - - -"
+main_menu_options

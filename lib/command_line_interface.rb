@@ -23,7 +23,6 @@ def main_menu_options_prompt
   puts "Please type 'main' at any time to return to the MAIN MENU"
 end
 
-<<<<<<< HEAD
 def main_menu_options
   main_menu_options_prompt
   user_input = gets.chomp
@@ -41,17 +40,13 @@ def main_menu_options
     else
       invalid_input
   end
-=======
-def help
-  help_list_of_commands
->>>>>>> finish-find-a-beer
 end
 
 #----STYLES----
 
 def list_beer_styles
   Style.all.map do |s|
-    "#{s.name} (catalogue number: #{s.id})"
+  puts "#{s.name} (catalogue number: #{s.id})"
   end
 end
 
@@ -59,24 +54,8 @@ end
 
 def beer_me
   random_beer = Beer.all.sample
-  "Too lazy (or drunk) to choose your own beer? No problem! Why don't you try the #{random_beer.name} made by #{random_beer.brewery.name}? With an ABV of #{random_beer.abv}, it's sure to warm your cockles (if that's your thing)!"
+    puts "Too lazy (or drunk) to choose your own beer? No problem! Why don't you try the #{random_beer.name} made by #{random_beer.brewery.name}? With an ABV of #{random_beer.abv}, it's sure to warm your cockles (if that's your thing)!"
 end
-
-#----BREWERY METHODS----
-<<<<<<< HEAD
-#
-# def brewery_search_request_help
-#   puts "Type '1' to search by Brewery Name"
-#   puts  "Type '2' to search by your location"
-#   puts "Type '3' to search  by a new Location"
-# end
-#
-# def brewery_search_request_test(user_input)
-#
-#   case brew
-#     if brewery_search_request = 1
-#         Brewery.find_by(name)
-=======
 
 # def brewery_search_request_help
 #   puts "Type '1' to search by Brewery Name"
@@ -89,7 +68,7 @@ end
 #   when brewery_search_request == 1
 #         Brewery.find_by(name)
 #   end
->>>>>>> finish-find-a-beer
+
 # end
 
 # def get_user_input

@@ -61,7 +61,7 @@ def delete_beer_from_beer_list
   puts "Please type the name of the beer you want to remove from your beer list"
   user_input = gets.chomp
   beer = Beer.find_by(name: user_input)
-  UserBeer.destroy(user_beer.id)
+  UserBeer.where(user_id: $user.id, beer_id: beer.id).destroy_all
   puts "#{beer.name} was removed from your beer list"
   main_menu_options
 end

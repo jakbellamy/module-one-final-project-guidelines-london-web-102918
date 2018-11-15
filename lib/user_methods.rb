@@ -22,7 +22,7 @@
 # add to user_beers harder - how?
 
 # add beer by name
-
+ $user = "user"
 
 def log_in
   puts "Please type '1' to log in or '2' to create a new account"
@@ -49,20 +49,37 @@ end
 def existing_user_log_in_with_name
   puts "Please enter your name"
   user_input = gets.chomp
-  user = User.find_by(name: user_input)
-  puts "Welcome #{user.name}"
-  puts "Please enter your password"
-  user_input = gets.chomp
-  if user_input = user.password
-    main_menu_options
-  end
-  # authenticate
+  $user = User.find_by(name: user_input)
+  authenticate
 end
 
-# def authenticate
-#   puts "Please enter your password"
-#   user_input = gets.chomp
-#   if user_input = user.password
-#     main_menu_options_prompt
-#   else authenticate
-# end
+def existing_user_log_in_with_email
+  puts "Please enter your email address"
+  user_input = gets.chomp
+  $user = User.find_by(email: user_input)
+  authenticate
+end
+
+def authenticate
+  puts "Welcome #{$user.name}, please enter your password"
+  user_input = gets.chomp
+  if user_input == $user.password
+    main_menu_options
+  else authenticate
+  end
+end
+
+def create_new_account
+  puts "Please enter your name"
+  user_input = gets.chomp
+  $user = User.create(name: user_input)
+  create_password
+end
+
+def create_password
+  puts "Please enter your new password"
+  user_input = gets.chomp
+  $user.password = user_input
+  puts "Welcome to beer me #{$user.name}!"
+  main_menu_options
+end

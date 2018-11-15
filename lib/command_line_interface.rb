@@ -1,3 +1,6 @@
+require_all 'app'
+
+
 def welcome
   puts "Welcome to BeerMe, oh seeker of beer and all its attendant delights!"
 end
@@ -8,9 +11,9 @@ def login_prompt
   gets.chomp.downcase
 end
 
-def get_user_input
-  gets.strip
-end
+# def get_user_input
+#   gets.strip
+# end
 
 def invalid_input
   puts "Please enter a valid command"
@@ -18,16 +21,16 @@ end
 
 def find_beer
   beer_search_options
-  get_user_input
+  user_input = gets.chomp
 
-  case get_user_input
-  when 1
+  case user_input
+  when "1"
     beer_by_name
-  when 2
+  when "2"
     beer_by_brewery
-  when 3
+  when "3"
     beer_by_abv
-  when 4
+  when "4"
     beer_by__style
   else
     invalid_input
@@ -42,23 +45,27 @@ def beer_search_options
 end
 
 def beer_by_name
-  user_input = get_user_input
+  user_input = gets.chomp
   beer = Beer.find_by(name: user_input)
-  puts "#{beer.name} is a #{beer.style} made by #{beer.brewery}, with an abv of #{beer.abv}"
+  puts "#{beer.name} is a #{beer.style.name} made by #{beer.brewery.name}, with an abv of #{beer.abv}"
 end
 
 def beer_by_brewery
-  user_input = get_user_input
+  user_input = gets.chomp
   beers = Beer.select {|beer| beer.brewery.name == user_input}
-
+  puts beers
 end
 
 def beer_by_abv
-  user_input = get_user_input
-  Beer.find_by(abv: user_input)
+  user_input = gets.chomp
+  beers = Beer.select {|beer| beer.abv == (user_input)}
+  beers.first(10)
 end
 
 def beer_by_style
-  user_input = get_user_input
-  Beer.find_by(style: user_input)
+  user_input = gets.chomp
+  beers = Beer.select {|beer| beer.style == user_input}
+  beers.first(10)
 end
+#
+find_beer

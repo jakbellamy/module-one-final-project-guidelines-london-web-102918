@@ -1,10 +1,10 @@
 #----STYLES----
 
 def list_beer_styles
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   Style.all.map do |s|
   puts "#{s.name} (catalogue number: #{s.id})"
   end
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   main_menu_options
 end

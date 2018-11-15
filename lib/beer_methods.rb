@@ -4,6 +4,7 @@ def find_beer
   beer_search_options
   puts "Type here:"
   user_input = gets.chomp
+  puts ""
   case user_input
   when "1"
     beer_by_name
@@ -23,30 +24,31 @@ def find_beer
 end
 
 def beer_search_options
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "BEER SEARCH"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Please type '1' to search by name"
   puts "Please type '2' to search by brewery"
   puts "Please type '3' to search by abv"
   puts "Please type '4' to search by style"
   puts "Please type 'main' at any time to return to the MAIN MENU"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
 end
 
 def beer_by_name
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Please enter the name of your beer"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Type here:"
   user_input = gets.chomp
+  puts ""
   beer = Beer.find_by(name: user_input)
     if user_input == "main"
       main_menu_options
     elsif beer
-      puts "- - - - - - - - - - - - -"
+      add_beer_icons
       puts "#{beer.name} is a/an #{beer.style.name} made by #{beer.brewery.name}, with an abv of #{beer.abv}"
-      puts "- - - - - - - - - - - - -"
+      add_beer_icons
     else
       input_not_found
       beer_by_name
@@ -54,38 +56,40 @@ def beer_by_name
 end
 
 def beer_by_brewery
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Please enter the name of a brewery to see their beers"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Type here:"
   user_input = gets.chomp
+  puts ""
   brewery = Brewery.find_by(name: user_input)
     if user_input == "main"
       main_menu_options
     elsif brewery
       beers = brewery.beers
-      puts "- - - - - - - - - - - - -"
-      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
-      puts "- - - - - - - - - - - - -"
-    else
+      add_beer_icons
+          beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
+          add_beer_icons
+      else
       input_not_found
       beer_by_brewery
     end
 end
 
 def beer_by_abv
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Please enter an abv to see ten beers with a similar abv"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Type here:"
   user_input = gets.chomp.to_f
+  puts ""
   beers = Beer.all.select {|beer| beer.abv == user_input}.sample(10) # (user_input >= 1 || user_input <= 1)}
     if user_input == "main"
       main_menu_options
     elsif beers.count > 0
-      puts "- - - - - - - - - - - - -"
+      add_beer_icons
       beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
-      puts "- - - - - - - - - - - - -"
+      add_beer_icons
     else
       input_not_found
       beer_by_abv
@@ -93,19 +97,20 @@ def beer_by_abv
 end
 
 def beer_by_style
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Please enter the name of a style to see beers of that style"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Type here:"
   user_input = gets.chomp
+  puts ""
   style = Style.find_by(name: user_input)
     if user_input == "main"
       main_menu_options
     elsif style
       beers = style.beers
-      puts "- - - - - - - - - - - - -"
+      add_beer_icons
       beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
-      puts "- - - - - - - - - - - - -"
+      add_beer_icons
     else
       input_not_found
       beer_by_style

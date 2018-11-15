@@ -22,11 +22,14 @@
 # add to user_beers harder - how?
 
 # add beer by name
-
+ $user = "user"
 
 def log_in
+  add_beer_icons
   puts "Please type '1' to log in or '2' to create a new account"
+  add_beer_icons
   user_input = gets.chomp
+  puts ""
   if user_input == "1"
     existing_user_log_in
   elsif user_input == "2"
@@ -36,8 +39,11 @@ def log_in
 end
 
 def existing_user_log_in
+  add_beer_icons
   puts "Please type '1' to log in with your name or '2' to log in with your email address"
+  add_beer_icons
   user_input = gets.chomp
+  puts ""
   if user_input == "1"
     existing_user_log_in_with_name
   elsif user_input == "2"
@@ -47,22 +53,56 @@ def existing_user_log_in
 end
 
 def existing_user_log_in_with_name
+  add_beer_icons
   puts "Please enter your name"
+  add_beer_icons
   user_input = gets.chomp
-  user = User.find_by(name: user_input)
-  puts "Welcome #{user.name}"
-  puts "Please enter your password"
-  user_input = gets.chomp
-  if user_input = user.password
-    main_menu_options
-  end
-  # authenticate
+  puts ""
+  $user = User.find_by(name: user_input)
+  authenticate
 end
 
-# def authenticate
-#   puts "Please enter your password"
-#   user_input = gets.chomp
-#   if user_input = user.password
-#     main_menu_options_prompt
-#   else authenticate
-# end
+def existing_user_log_in_with_email
+  add_beer_icons
+  puts "Please enter your email address"
+  add_beer_icons
+  user_input = gets.chomp
+  puts ""
+  $user = User.find_by(email: user_input)
+  authenticate
+end
+
+def authenticate
+  add_beer_icons
+  puts "Welcome #{$user.name}, please enter your password"
+  add_beer_icons
+  user_input = gets.chomp
+  puts ""
+  if user_input == $user.password
+    main_menu_options
+  else authenticate
+  end
+end
+
+def create_new_account
+  add_beer_icons
+  puts "Please enter your name"
+  add_beer_icons
+  user_input = gets.chomp
+  puts ""
+  $user = User.create(name: user_input)
+  create_password
+end
+
+def create_password
+  add_beer_icons
+  puts "Please enter your new password"
+  add_beer_icons
+  user_input = gets.chomp
+  puts ""
+  $user.password = user_input
+  add_beer_icons
+  puts "Welcome to beer me #{$user.name}!"
+  add_beer_icons
+  main_menu_options
+end

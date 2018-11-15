@@ -1,36 +1,36 @@
 #----WELCOME AND LOGIN----
 
 def welcome
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Welcome to BeerMe, oh seeker of beer and all its attendant delights!"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
 end
 
 def login_prompt
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Please enter your user name"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Type here:"
   gets.chomp.downcase
 end
 
 def invalid_input
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "That command could not be recognized, please try again"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
 end
 
 def options_reminder
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Please press enter for a reminder of the options"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   gets.chomp
 end
 
 def input_not_found
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Alas, that cannot be found. Please press enter to try again"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   gets.chomp
 end
 

@@ -38,6 +38,22 @@ def brewery_by_name
   main_menu_options
 end
 
+def brewery_by_user_loc
+  user_loc_brewery_list = Brewery.all.select {|b| b.country == User.all[0]}
+
+  if user_loc_brewery_list.length >= 1
+    puts "- - - - - - - - - - - - -"
+    user_loc_brewery_list.each do |brewery| 
+      puts "#{brewery.name}."
+    end
+    puts "- - - - - - - - - - - - -"
+  else
+    puts "- - - - - - - - - - - - -"
+      puts "Sorry, there are no breweries where you live. Maybe you should consider moving..."
+    puts "- - - - - - - - - - - - -" 
+  end
+  main_menu_options
+end
 
 #----KENAN PRIVATE METHODS----
 

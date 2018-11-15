@@ -16,20 +16,20 @@ end
 
 def invalid_input
   puts "- - - - - - - - - - - - -"
-  puts "Please enter a valid command"
+  puts "That command could not be recognized, please try again"
   puts "- - - - - - - - - - - - -"
 end
 
 def options_reminder
   puts "- - - - - - - - - - - - -"
-  puts "Press enter for a reminder of the options"
+  puts "Please press enter for a reminder of the options"
   puts "- - - - - - - - - - - - -"
   gets.chomp
 end
 
 def input_not_found
   puts "- - - - - - - - - - - - -"
-  puts "Alas, that cannot be found. Please check your spelling, perhaps? Press enter to try again"
+  puts "Alas, that cannot be found. Please press enter to try again"
   puts "- - - - - - - - - - - - -"
   gets.chomp
 end

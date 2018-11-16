@@ -30,8 +30,13 @@ end
 
 def see_beer_list
   $user.reload
+  if $user.beers.length == 0
+    puts "Your beer list is empty, silly!"
+    main_menu_options
+  else
   $user.beers.each {|beer| puts beer.name}
   main_menu_options
+  end
 end
 
 def modify_beer_list_options

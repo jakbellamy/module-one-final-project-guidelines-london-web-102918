@@ -38,12 +38,11 @@ def brewery_by_name
 end
 
 def brewery_by_user_loc
-  user_loc_brewery_list = Brewery.all.select {|b| b.country == User.all[0]}
-
+  user_loc_brewery_list = Brewery.all.select {|brewery| brewery.city == $user.city}
   if user_loc_brewery_list.length >= 1
     add_beer_icons
-    user_loc_brewery_list.each do |brewery| 
-      puts "#{brewery.name}."
+    user_loc_brewery_list.each_with_index do |brewery, i| 
+      puts "#{i+1}. #{brewery.name}."
     end
     add_beer_icons
   else

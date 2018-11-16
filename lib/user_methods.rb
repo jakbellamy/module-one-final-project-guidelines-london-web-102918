@@ -92,8 +92,9 @@ def create_password
   puts "Please enter your new password"
   add_beer_icons
   user_input = gets.chomp
-  puts ""
   $user.password = user_input
+  $user.save
+  $user.reload
   add_beer_icons
   puts "Welcome to beer me #{$user.name}!"
   add_beer_icons

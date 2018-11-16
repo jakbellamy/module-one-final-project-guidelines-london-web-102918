@@ -18,6 +18,13 @@
  $user = "user"
 
 def log_in
+  puts"
+██████╗ ███████╗███████╗██████╗ ███╗   ███╗███████╗
+██╔══██╗██╔════╝██╔════╝██╔══██╗████╗ ████║██╔════╝
+██████╔╝█████╗  █████╗  ██████╔╝██╔████╔██║█████╗
+██╔══██╗██╔══╝  ██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══╝
+██████╔╝███████╗███████╗██║  ██║██║ ╚═╝ ██║███████╗
+╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝"
   welcome
   puts ""
   puts "Do we know you or do we not?"
@@ -30,7 +37,22 @@ def log_in
     existing_user_log_in
   elsif user_input == "2"
     create_new_account
-  else log_in
+  else invalid_input
+    log_in_try_again
+  end
+end
+
+def log_in_try_again
+  puts "Please type '1' to log in or '2' to create a new account"
+  add_beer_icons
+  user_input = gets.chomp
+  puts ""
+  if user_input == "1"
+    existing_user_log_in
+  elsif user_input == "2"
+    create_new_account
+  else invalid_input
+    log_in_try_again
   end
 end
 

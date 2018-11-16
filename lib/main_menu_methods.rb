@@ -14,7 +14,7 @@ def main_menu_options_prompt
   puts "Or type 'log out' to quit BeerMe.... We'll miss you!"
   add_beer_icons
 end
-
+ 
 def main_menu_options
   main_menu_options_prompt
   puts "Type here:"

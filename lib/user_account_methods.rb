@@ -10,13 +10,14 @@ def user_account_options
   add_beer_icons
   puts "Please type '1' to see your beer list"
   puts "Please type '2' to modify your beer list"
-  add_beer_icons
+  puts "And by jiminy, if there's something wrong with"
+  puts "you and you want to delete your account,"
+  puts "then type '3' (fine then, be like that....)"
 end
 
 def user_account_loop
   add_beer_icons
   user_account_options
-  add_beer_icons
   user_input = gets.chomp
   if user_input == "1"
     see_beer_list
@@ -35,11 +36,13 @@ def see_beer_list
     main_menu_options
   else
   $user.beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name} #{beer.brewery.url}"}
+  options_reminder
   user_account_loop
   end
 end
 
 def modify_beer_list_options
+  add_beer_icons
   puts "Please type '1' to add a beer to your beer list"
   puts "Please type '2' to delete a beer from your beer list"
   puts "Please type '3' to delete all beers from your beer list"
@@ -94,8 +97,8 @@ def delete_beer_from_beer_list
     else
     UserBeer.where(user_id: $user.id, beer_id: beer.id).destroy_all
     puts "#{beer.name} was removed from your beer list"
+    options_reminder
     user_account_loop
-    end
   end
 end
 
@@ -111,7 +114,8 @@ def delete_entire_beer_list
       puts "Oh the humanity..."
       main_menu_options
     else
-      main_menu_options
+      options_reminder
+      user_account_loop
     end
   end
 end
@@ -127,11 +131,11 @@ def delete_account
       UserBeer.where(user_id: $user.id).destroy_all
       User.find_by(name: $user.name).destroy
       # $user.reload
-      puts "'Hic'... More beer for us loser!"
+      puts "'Hic'.... More beer for us loser!"
     log_in
     end
   else
-    puts "You won't regret it (your liver might though...)"
+    puts "You won't regret it (your liver might though....)"
     main_menu_options
   end
 end

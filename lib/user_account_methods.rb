@@ -45,7 +45,7 @@ def modify_beer_list
   elsif user_input == "2"
     delete_beer_from_beer_list
   elsif user_input == "3"
-    delete__entire_beer_list
+    delete_entire_beer_list
   else modify_beer_list
   end
 end
@@ -68,7 +68,7 @@ def delete_beer_from_beer_list
   main_menu_options
 end
 
-def delete__entire_beer_list
+def delete_entire_beer_list
   puts "Are you sure? Type 'clearmebeerme' to proceed, otherwise press enter to cancel"
   user_input = gets.chomp.downcase
   if user_input == "clearmebeerme"

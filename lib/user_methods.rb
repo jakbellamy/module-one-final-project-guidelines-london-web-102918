@@ -87,6 +87,14 @@ def create_new_account
   user_input = gets.chomp
   puts ""
   $user = User.create(name: user_input)
+  $user.save
+  $user.reload
+  puts "Thanks #{$user.name}. Please enter your email address"
+  user_input2 = gets.chomp
+  puts ""
+  $user.email = user_input2
+  $user.save
+  $user.reload
   create_password
 end
 

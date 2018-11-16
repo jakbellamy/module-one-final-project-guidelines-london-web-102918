@@ -93,6 +93,10 @@ def brewery_by_location
 
 end
 
+def puts_brewery_list
+  #for future factorising
+end
+
 #----KENAN PRIVATE METHODS----
 
 def get_user_input

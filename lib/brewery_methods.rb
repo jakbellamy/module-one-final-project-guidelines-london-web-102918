@@ -26,15 +26,14 @@ def find_brewery
 end
 
 def brewery_by_name
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "Please enter the name of a brewery"
-  puts "- - - - - - - - - - - - -"
   puts "Type here:"
   user_input = gets.chomp
   brewery = Brewery.find_by(name: user_input)
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   puts "#{brewery.name} is in #{brewery.city}, #{brewery.country}. Find out more from their website #{brewery.url}"
-  puts "- - - - - - - - - - - - -"
+  add_beer_icons
   main_menu_options
 end
 
@@ -42,17 +41,36 @@ def brewery_by_user_loc
   user_loc_brewery_list = Brewery.all.select {|b| b.country == User.all[0]}
 
   if user_loc_brewery_list.length >= 1
-    puts "- - - - - - - - - - - - -"
+    add_beer_icons
     user_loc_brewery_list.each do |brewery| 
       puts "#{brewery.name}."
     end
-    puts "- - - - - - - - - - - - -"
+    add_beer_icons
   else
-    puts "- - - - - - - - - - - - -"
+    add_beer_icons
       puts "Sorry, there are no breweries where you live. Maybe you should consider moving..."
-    puts "- - - - - - - - - - - - -" 
+    add_beer_icons
   end
   main_menu_options
+end
+
+def brewery_by_location
+  add_beer_icons
+  #Change to allow searching for city or country
+  puts "Please enter the name of a city." 
+  puts "Type here:"
+  user_input = gets.chomp
+  #Change to allow for searching non exact user_inputs
+  brewery_list = Brewery.all.select {|brewery| brewery.city == user_input}
+  puts "Here are a list of breweries in #{user_input}:"
+  i = 1
+  brewery_list.each do |brewery|
+    puts "#{i}. #{brewery.name}"
+    i += 1
+  end
+    
+  main_menu_options
+
 end
 
 #----KENAN PRIVATE METHODS----

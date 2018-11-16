@@ -60,13 +60,21 @@ def brewery_by_location
   puts "Please enter the name of a city." 
   puts "Type here:"
   user_input = gets.chomp
-  #Change to allow for searching non exact user_inputs
   brewery_list = Brewery.all.select {|brewery| brewery.city == user_input}
-  puts "Here are a list of breweries in #{user_input}:"
-  i = 1
-  brewery_list.each do |brewery|
-    puts "#{i}. #{brewery.name}"
-    i += 1
+
+  #Change to allow for searching non exact user_inputs
+  if brewery_list.length >= 1 
+    brewery_list = Brewery.all.select {|brewery| brewery.city == user_input}
+    puts "Here are a list of breweries in #{user_input}:"
+    i = 1
+    brewery_list.each do |brewery|
+      puts "#{i}. #{brewery.name} (#{brewery.country})"
+      i += 1
+    end
+  else
+    puts "Sorry there are no breweries there or you're making cities up again."
+    "Please try again."
+    brewery_by_location
   end
     
   main_menu_options

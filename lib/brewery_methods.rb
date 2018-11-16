@@ -62,7 +62,6 @@ def brewery_by_location
   user_input = gets.chomp
   non_nil_brewery_list = Brewery.all.reject {|brewery| brewery.city == nil}
   brewery_list = non_nil_brewery_list.select {|brewery| brewery.city.downcase == user_input.downcase}
-  binding.pry
 
   #Change to allow for searching non exact user_inputs
   if brewery_list.length >= 1 

@@ -28,6 +28,8 @@ def main_menu_options
       list_beer_styles
     when "5"
       user_account_loop
+    when "ttt"
+      game = TicTacToe.new.play
     when "main"
       main_menu_options
     when "log out"

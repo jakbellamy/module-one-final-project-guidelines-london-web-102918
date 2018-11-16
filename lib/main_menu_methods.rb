@@ -9,11 +9,12 @@ def main_menu_options_prompt
   puts "Please type '3' to search for a brewery"
   puts "Please type '4' to see a list of all beer styles"
   puts "Please type '5' to see your user account"
+  puts "Please type '6' to see the thanks page"
   puts "You can type 'main' at any time to return to the Main Menu"
   puts "Or type 'log out' to quit BeerMe.... We'll miss you!"
   add_beer_icons
 end
-
+ 
 def main_menu_options
   main_menu_options_prompt
   puts "Type here:"

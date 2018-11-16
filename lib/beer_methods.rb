@@ -50,7 +50,7 @@ def beer_by_name
       main_menu_options
     elsif beer
       add_beer_icons
-      puts "#{beer.name} is a/an #{beer.style.name} made by #{beer.brewery.name}, with an abv of #{beer.abv}"
+      puts "#{beer.name} is a/an #{beer.style.name} made by #{beer.brewery.name}, with an abv of #{beer.abv} - for more info, press command and double click here: #{beer.brewery.url}"
       add_beer_icons
     else
       input_not_found
@@ -71,7 +71,8 @@ def beer_by_brewery
     elsif brewery
       beers = brewery.beers
       add_beer_icons
-          beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
+      # puts "You selected #{beer.brewery.name} (for more info, press command and double click here #{beer.brewery.url}). Here are the beers:"
+      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
           add_beer_icons
       else
       input_not_found
@@ -91,7 +92,7 @@ def beer_by_abv
       main_menu_options
     elsif beers.count > 0
       add_beer_icons
-      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
+      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name} - for more info, press command and double click here: #{beer.brewery.url}"}
       add_beer_icons
     else
       input_not_found
@@ -112,7 +113,7 @@ def beer_by_style
     elsif style
       beers = style.beers
       add_beer_icons
-      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
+      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name} - for more info, press command and double click here: #{beer.brewery.url}"}
       add_beer_icons
     else
       input_not_found
@@ -133,7 +134,7 @@ def beer_by_style_id
     elsif style
       beers = style.beers
       add_beer_icons
-      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
+      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name} - for more info, press command and double click here: #{beer.brewery.url}"}
       add_beer_icons
     else
       input_not_found

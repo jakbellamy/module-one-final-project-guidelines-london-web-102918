@@ -75,7 +75,7 @@ end
 def authenticate
   add_beer_icons
   puts "Hello and welcome back #{$user.name}! Please enter your password"
-  user_input = gets.chomp
+  user_input = STDIN.noecho(&:gets).chomp
   puts ""
   if user_input == $user.password
     main_menu_options

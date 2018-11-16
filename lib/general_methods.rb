@@ -3,7 +3,6 @@
 def welcome
   add_beer_icons
   puts "Welcome to BeerMe, oh seeker of beer and all its attendant delights!"
-  add_beer_icons
 end
 
 def login_prompt

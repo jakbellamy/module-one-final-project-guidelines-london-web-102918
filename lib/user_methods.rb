@@ -18,7 +18,10 @@
  $user = "user"
 
 def log_in
-  add_beer_icons
+  welcome
+  puts ""
+  puts "Do we know you or do we not?"
+  puts ""
   puts "Please type '1' to log in or '2' to create a new account"
   add_beer_icons
   user_input = gets.chomp
@@ -67,7 +70,7 @@ end
 
 def authenticate
   add_beer_icons
-  puts "Welcome #{$user.name}, please enter your password"
+  puts "Hello and welcome back #{$user.name}! Please enter your password"
   add_beer_icons
   user_input = gets.chomp
   puts ""

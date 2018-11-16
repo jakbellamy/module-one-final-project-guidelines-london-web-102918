@@ -75,9 +75,10 @@ end
 def authenticate
   add_beer_icons
   puts "Hello and welcome back #{$user.name}! Please enter your password"
-  user_input = gets.chomp
+  user_input = STDIN.noecho(&:gets).chomp
   puts ""
   if user_input == $user.password
+    puts "Well remembered, at least someone is sober around here"
     main_menu_options
   else authenticate
   end
@@ -90,6 +91,14 @@ def create_new_account
   user_input = gets.chomp
   puts ""
   $user = User.create(name: user_input)
+  $user.save
+  $user.reload
+  puts "Thanks #{$user.name}. Please enter your email address"
+  user_input2 = gets.chomp
+  puts ""
+  $user.email = user_input2
+  $user.save
+  $user.reload
   create_password
 end
 

@@ -1,14 +1,14 @@
 class TicTacToe
 
   def initialize(board = nil)
-    @board = board || Array.new(9, " ")
+    @board = board || (Array.new(9, "  "))
   end
 
   def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
-    puts "-----------"
+    puts "--------------"
     puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
-    puts "-----------"
+    puts "--------------"
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
@@ -62,7 +62,7 @@ class TicTacToe
 
   def position_taken?(index)
     if
-      @board[index] == "X" || @board[index] == "O"
+      @board[index] == "\u{1F37A}" || @board[index] == "\u{1F377}"
       true
     else
       false
@@ -70,11 +70,11 @@ class TicTacToe
   end
 
   def current_player
-    turn_count % 2 == 0 ? "X" : "O"
+    turn_count % 2 == 0 ? "\u{1F37A}" : "\u{1F377}"
   end
 
   def turn_count
-    @board.count{|token| token == "X" || token == "O"}
+    @board.count{|token| token == "\u{1F37A}" || token == "\u{1F377}"}
   end
    def won?
     WIN_COMBINATIONS.find do |index|
@@ -85,7 +85,7 @@ class TicTacToe
   end
 
   def full?
-    if @board.find {|index| index == "" || index == " " || index == nil}
+    if @board.find {|index| index == "" || index == "  " || index == nil}
     false
   else
     true

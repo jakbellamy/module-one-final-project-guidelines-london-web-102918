@@ -65,7 +65,6 @@ def brewery_by_location
 
   #Change to allow for searching non exact user_inputs
   if brewery_list.length >= 1 
-    brewery_list = Brewery.all.select {|brewery| brewery.city == user_input}
     puts "Here are a list of breweries in #{user_input}:"
     i = 1
     brewery_list.each do |brewery|
@@ -73,8 +72,10 @@ def brewery_by_location
       i += 1
     end
   else
+    brewery_list = non_nil_brewery_list.select {|brewery| brewery.city.downcase.include?(user_input)}
+    binding.pry
     puts "Sorry there are no breweries there or you're making cities up again."
-    "Please try again."
+    puts "Want another try?"
     brewery_by_location
   end
     

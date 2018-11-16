@@ -44,6 +44,8 @@ def modify_beer_list
     add_beer_to_beer_list
   elsif user_input == "2"
     delete_beer_from_beer_list
+  elsif user_input == "3"
+    delete__entire_beer_list
   else modify_beer_list
   end
 end
@@ -66,5 +68,17 @@ def delete_beer_from_beer_list
   main_menu_options
 end
 
-def delete_beer_list
+def delete__entire_beer_list
+  puts "Are you sure? Type 'clearmebeerme' to proceed, otherwise press enter to cancel"
+  user_input = gets.chomp.downcase
+  if user_input == "clearmebeerme"
+    UserBeer.where(user_id: $user.id).destroy_all
+    puts "Oh the humanity..."
+    main_menu_options
+  else
+    main_menu_options
+  end
+end
+
+def delete_account
 end

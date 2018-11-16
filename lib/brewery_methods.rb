@@ -71,14 +71,23 @@ def brewery_by_location
     end
   else
     brewery_list = non_nil_brewery_list.select {|brewery| brewery.city.downcase.include?(user_input)}
-    binding.pry
     brewery_cities = brewery_list.map {|brewery| brewery.city}.uniq
     puts "Sorry you slurred your words. Did you mean one of these?"
     brewery_cities.each_with_index {|b_c, i| puts "#{i+1}. #{b_c}"}
+    
+    puts "Type the number of the city to see list of breweries or quit to return to main menu."
+    puts "Type here:"
+    user_input_city = gets.chomp
+    brewery_list = brewery_list.select {|brewery| brewery.city == brewery_cities[user_input_city.to_i - 1]}
 
-    puts "Sorry there are no breweries there or you're making cities up again."
-    puts "Want another try?"
-    brewery_by_location
+    puts "Here are a list of breweries in #{brewery_cities[user_input_city.to_i - 1]}:"
+    brewery_list.each_with_index do |brewery, i|
+      puts "#{i+1}. #{brewery.name} (#{brewery.country})"
+    end
+
+    # puts "Sorry there are no breweries there or you're making cities up again."
+    # puts "Want another try?"
+    # brewery_by_location
   end
     
   main_menu_options

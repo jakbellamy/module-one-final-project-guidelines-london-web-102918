@@ -30,8 +30,13 @@ end
 
 def see_beer_list
   $user.reload
-  $user.beers.each {|beer| puts beer.name}
-  main_menu_options
+  if $user.beers.length == 0
+    puts "Your beer list is empty, silly!"
+    main_menu_options
+  else
+  $user.beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name} #{beer.brewery.url}"}
+  user_account_loop
+  end
 end
 
 def modify_beer_list_options
@@ -57,22 +62,40 @@ def add_beer_to_beer_list
   puts "Please type the name of the beer you want to add to your beer list"
   user_input = gets.chomp
   beer = Beer.find_by(name: user_input)
-  UserBeer.create(user_id: $user.id, beer_id: beer.id)
-  puts "#{beer.name} was added to your beer list"
-  main_menu_options
+  if beer
+    if $user.beers.include?(beer)
+      puts "That beer is already in your list amigo, ease off beer, eh?"
+      options_reminder
+      user_account_loop
+    else
+      UserBeer.create(user_id: $user.id, beer_id: beer.id)
+      puts "#{beer.name} was added to your beer list"
+      options_reminder
+      user_account_loop
+    end
+  else
+    input_not_found
+    user_account_loop
+  end
 end
 
 def delete_beer_from_beer_list
   if $user.beers.length == 0
     puts "Your beer list is empty, silly!"
-    main_menu_options
+    user_account_loop
   else
     puts "Please type the name of the beer you want to remove from your beer list"
     user_input = gets.chomp
     beer = Beer.find_by(name: user_input)
+    if !$user.beers.include?(beer)
+      puts "That beer is not in your list amigo, ease off beer, eh?"
+      options_reminder
+      user_account_loop
+    else
     UserBeer.where(user_id: $user.id, beer_id: beer.id).destroy_all
     puts "#{beer.name} was removed from your beer list"
-    main_menu_options
+    user_account_loop
+    end
   end
 end
 

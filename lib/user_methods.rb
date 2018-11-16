@@ -5,7 +5,7 @@
 # log in asks for name or email and validates input
 # if no record found suggest checking spelling or creating a new account
 # if user found asks for password
-# gem to star out password entry
+# gem to star out password entry https://stackoverflow.com/questions/2338889/how-to-hide-password-input-from-terminal-in-ruby-script
 # if password is correct goes to main menu
 # if not correct suggest checking spelling or creating a new account
 
@@ -15,17 +15,13 @@
 # personalised welcome
 # main menu options now including including log out option which re-runs the whole file
 
-# methods below are inside the my account menu branch of the main menu
-# start with most basic methods - adding to user_beers by name to create the join between beers and users
-
-# see user_beers - realitively easy
-# add to user_beers harder - how?
-
-# add beer by name
  $user = "user"
 
 def log_in
-  add_beer_icons
+  welcome
+  puts ""
+  puts "Do we know you or do we not?"
+  puts ""
   puts "Please type '1' to log in or '2' to create a new account"
   add_beer_icons
   user_input = gets.chomp
@@ -41,9 +37,7 @@ end
 def existing_user_log_in
   add_beer_icons
   puts "Please type '1' to log in with your name or '2' to log in with your email address"
-  add_beer_icons
   user_input = gets.chomp
-  puts ""
   if user_input == "1"
     existing_user_log_in_with_name
   elsif user_input == "2"
@@ -55,27 +49,32 @@ end
 def existing_user_log_in_with_name
   add_beer_icons
   puts "Please enter your name"
-  add_beer_icons
   user_input = gets.chomp
-  puts ""
   $user = User.find_by(name: user_input)
-  authenticate
+  if $user
+    authenticate
+  else
+    input_not_found
+    existing_user_log_in_with_name
+  end
 end
 
 def existing_user_log_in_with_email
   add_beer_icons
   puts "Please enter your email address"
-  add_beer_icons
   user_input = gets.chomp
-  puts ""
   $user = User.find_by(email: user_input)
-  authenticate
+  if $user
+    authenticate
+  else
+    input_not_found
+    existing_user_log_in_with_email
+  end
 end
 
 def authenticate
   add_beer_icons
-  puts "Welcome #{$user.name}, please enter your password"
-  add_beer_icons
+  puts "Hello and welcome back #{$user.name}! Please enter your password"
   user_input = gets.chomp
   puts ""
   if user_input == $user.password
@@ -99,8 +98,9 @@ def create_password
   puts "Please enter your new password"
   add_beer_icons
   user_input = gets.chomp
-  puts ""
   $user.password = user_input
+  $user.save
+  $user.reload
   add_beer_icons
   puts "Welcome to beer me #{$user.name}!"
   add_beer_icons

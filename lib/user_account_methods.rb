@@ -10,6 +10,9 @@ def user_account_options
   add_beer_icons
   puts "Please type '1' to see your beer list"
   puts "Please type '2' to modify your beer list"
+  puts "And by jiminy, if there's something wrong with"
+  puts "you and you want to delete your account,"
+  puts "then type '3' (fine then, be like that....)"
   add_beer_icons
 end
 
@@ -104,11 +107,11 @@ def delete_account
       UserBeer.where(user_id: $user.id).destroy_all
       User.find_by(name: $user.name).destroy
       # $user.reload
-      puts "'Hic'... More beer for us loser!"
+      puts "'Hic'.... More beer for us loser!"
     log_in
     end
   else
-    puts "You won't regret it (your liver might though...)"
+    puts "You won't regret it (your liver might though....)"
     main_menu_options
   end
 end

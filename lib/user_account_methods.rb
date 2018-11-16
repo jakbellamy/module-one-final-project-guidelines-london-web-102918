@@ -100,6 +100,7 @@ def delete_beer_from_beer_list
     options_reminder
     user_account_loop
   end
+  end
 end
 
 def delete_entire_beer_list

@@ -119,3 +119,24 @@ def beer_by_style
       beer_by_style
     end
 end
+
+def beer_by_style_id
+  add_beer_icons
+  puts "Please enter the catalogue number of a style to see beers of that style"
+  add_beer_icons
+  puts "Type here:"
+  user_input = gets.chomp
+  puts ""
+  style = Style.find_by(id: user_input)
+    if user_input == "main"
+      main_menu_options
+    elsif style
+      beers = style.beers
+      add_beer_icons
+      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
+      add_beer_icons
+    else
+      input_not_found
+      beer_by_style
+    end
+end

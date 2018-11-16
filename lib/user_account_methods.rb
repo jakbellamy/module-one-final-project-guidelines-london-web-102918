@@ -63,23 +63,33 @@ def add_beer_to_beer_list
 end
 
 def delete_beer_from_beer_list
-  puts "Please type the name of the beer you want to remove from your beer list"
-  user_input = gets.chomp
-  beer = Beer.find_by(name: user_input)
-  UserBeer.where(user_id: $user.id, beer_id: beer.id).destroy_all
-  puts "#{beer.name} was removed from your beer list"
-  main_menu_options
+  if $user.beers.length == 0
+    puts "Your beer list is empty, silly!"
+    main_menu_options
+  else
+    puts "Please type the name of the beer you want to remove from your beer list"
+    user_input = gets.chomp
+    beer = Beer.find_by(name: user_input)
+    UserBeer.where(user_id: $user.id, beer_id: beer.id).destroy_all
+    puts "#{beer.name} was removed from your beer list"
+    main_menu_options
+  end
 end
 
 def delete_entire_beer_list
-  puts "Are you sure? Type 'clearmebeerme' to proceed, otherwise press enter to cancel"
-  user_input = gets.chomp.downcase
-  if user_input == "clearmebeerme"
-    UserBeer.where(user_id: $user.id).destroy_all
-    puts "Oh the humanity..."
+  if $user.beers.length == 0
+    puts "Your beer list is empty, silly!"
     main_menu_options
   else
-    main_menu_options
+    puts "Are you sure? Type 'ClearMeBeerMe' to proceed, otherwise press enter to cancel"
+    user_input = gets.chomp.downcase
+    if user_input == "clearmebeerme"
+      UserBeer.where(user_id: $user.id).destroy_all
+      puts "Oh the humanity..."
+      main_menu_options
+    else
+      main_menu_options
+    end
   end
 end
 

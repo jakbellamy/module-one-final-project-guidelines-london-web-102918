@@ -78,6 +78,7 @@ def authenticate
   user_input = STDIN.noecho(&:gets).chomp
   puts ""
   if user_input == $user.password
+    puts "Well remembered, at least someone is sober around here"
     main_menu_options
   else authenticate
   end

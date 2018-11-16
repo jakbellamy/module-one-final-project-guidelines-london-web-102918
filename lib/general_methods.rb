@@ -16,20 +16,17 @@ end
 def invalid_input
   add_beer_icons
   puts "That command could not be recognized, please try again"
-  add_beer_icons
 end
 
 def options_reminder
   add_beer_icons
   puts "Please press enter for a reminder of the options"
-  add_beer_icons
   gets.chomp
 end
 
 def input_not_found
   add_beer_icons
   puts "Alas, that cannot be found. Please press enter to try again"
-  add_beer_icons
   gets.chomp
 end
 

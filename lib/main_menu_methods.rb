@@ -37,6 +37,7 @@ def main_menu_options
       log_out
     else
       invalid_input
+      options_reminder
       main_menu_options
   end
 end

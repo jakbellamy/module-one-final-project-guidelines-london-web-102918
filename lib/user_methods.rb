@@ -37,9 +37,7 @@ end
 def existing_user_log_in
   add_beer_icons
   puts "Please type '1' to log in with your name or '2' to log in with your email address"
-  add_beer_icons
   user_input = gets.chomp
-  puts ""
   if user_input == "1"
     existing_user_log_in_with_name
   elsif user_input == "2"
@@ -51,27 +49,32 @@ end
 def existing_user_log_in_with_name
   add_beer_icons
   puts "Please enter your name"
-  add_beer_icons
   user_input = gets.chomp
-  puts ""
   $user = User.find_by(name: user_input)
-  authenticate
+  if $user
+    authenticate
+  else
+    input_not_found
+    existing_user_log_in_with_name
+  end
 end
 
 def existing_user_log_in_with_email
   add_beer_icons
   puts "Please enter your email address"
-  add_beer_icons
   user_input = gets.chomp
-  puts ""
   $user = User.find_by(email: user_input)
-  authenticate
+  if $user
+    authenticate
+  else
+    input_not_found
+    existing_user_log_in_with_email
+  end
 end
 
 def authenticate
   add_beer_icons
   puts "Hello and welcome back #{$user.name}! Please enter your password"
-  add_beer_icons
   user_input = gets.chomp
   puts ""
   if user_input == $user.password

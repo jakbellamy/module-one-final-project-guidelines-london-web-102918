@@ -22,11 +22,14 @@ def user_account_loop
     see_beer_list
   elsif user_input == "2"
     modify_beer_list
+  elsif user_input == "3"
+    delete_account
   else user_account_loop
   end
 end
 
 def see_beer_list
+  $user.reload
   $user.beers.each {|beer| puts beer.name}
   main_menu_options
 end
@@ -34,7 +37,7 @@ end
 def modify_beer_list_options
   puts "Please type '1' to add a beer to your beer list"
   puts "Please type '2' to delete a beer from your beer list"
-  # puts "Please type '3' to delete all beers from your beer list"
+  puts "Please type '3' to delete all beers from your beer list"
 end
 
 def modify_beer_list
@@ -81,4 +84,21 @@ def delete_entire_beer_list
 end
 
 def delete_account
+  puts "Are you sure? Type 'SoberMeUp' to confirm"
+  user_input = gets.chomp.downcase
+  if user_input == "sobermeup"
+    puts "Last chance, buddy, your liver might be happy, but will you be?"
+    puts "Type 'MyDrinkingHasDestroyedMyLifeYesIAmSure' if you really don't love us any more"
+    user_input2 = gets.chomp.downcase
+    if user_input2 == "mydrinkinghasdestroyedmylifeyesiamsure"
+      UserBeer.where(user_id: $user.id).destroy_all
+      User.find_by(name: $user.name).destroy
+      # $user.reload
+      puts "'Hic'... More beer for us loser!"
+    log_in
+    end
+  else
+    puts "You won't regret it (your liver might though...)"
+    main_menu_options
+  end
 end

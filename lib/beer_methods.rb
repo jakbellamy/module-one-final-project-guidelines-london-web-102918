@@ -17,7 +17,7 @@ def find_beer
   when "main"
     main_menu_options
   when "log out"
-    log_out
+    log_in
   else
     invalid_input
   end
@@ -51,7 +51,6 @@ def beer_by_name
     elsif beer
       add_beer_icons
       puts "#{beer.name} is a/an #{beer.style.name} made by #{beer.brewery.name}, with an abv of #{beer.abv} - for more info, press command and double click here: #{beer.brewery.url}"
-      add_beer_icons
     else
       input_not_found
       beer_by_name
@@ -71,9 +70,9 @@ def beer_by_brewery
     elsif brewery
       beers = brewery.beers
       add_beer_icons
-      # puts "You selected #{beer.brewery.name} (for more info, press command and double click here #{beer.brewery.url}). Here are the beers:"
-      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name}"}
-          add_beer_icons
+      puts "You selected '#{brewery.name}' (for more info, press command and double click here #{brewery.url}. Here are the beers:"
+      puts ""
+      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}"}
       else
       input_not_found
       beer_by_brewery
@@ -92,8 +91,7 @@ def beer_by_abv
       main_menu_options
     elsif beers.count > 0
       add_beer_icons
-      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name} - for more info, press command and double click here: #{beer.brewery.url}"}
-      add_beer_icons
+      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name} - for more info, press command and double click here: #{beer.brewery.url} \n \n"}
     else
       input_not_found
       beer_by_abv
@@ -102,7 +100,7 @@ end
 
 def beer_by_style
   add_beer_icons
-  puts "Please enter the name of a style to see beers of that style"
+  puts "Please enter the name of a style to see up to ten beers of that style"
   add_beer_icons
   puts "Type here:"
   user_input = gets.chomp
@@ -113,8 +111,7 @@ def beer_by_style
     elsif style
       beers = style.beers
       add_beer_icons
-      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name} - for more info, press command and double click here: #{beer.brewery.url}"}
-      add_beer_icons
+      beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name} - for more info, press command and double click here: #{beer.brewery.url} \n \n"}
     else
       input_not_found
       beer_by_style
@@ -131,11 +128,10 @@ def beer_by_style_id
   style = Style.find_by(id: user_input)
     if user_input == "main"
       main_menu_options
-    elsif style
+    elsif user_input == "style"
       beers = style.beers
       add_beer_icons
       beers.each {|beer| puts "#{beer.name}, #{beer.style.name}, #{beer.abv}, #{beer.brewery.name} - for more info, press command and double click here: #{beer.brewery.url}"}
-      add_beer_icons
     else
       input_not_found
       beer_by_style

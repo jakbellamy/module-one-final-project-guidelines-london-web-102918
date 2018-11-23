@@ -8,7 +8,9 @@ end
 
 
 def find_brewery
+  add_beer_icons
   brewery_search_options
+  add_beer_icons
   puts "Type here:"
   user_input = gets.chomp
   case user_input
@@ -20,9 +22,13 @@ def find_brewery
     brewery_by_location
   when "main"
     main_menu_options
+  when "log out"
+    log_in
   else
     invalid_input
   end
+  options_reminder
+  find_brewery
 end
 
 def brewery_by_name
@@ -33,15 +39,13 @@ def brewery_by_name
   brewery = Brewery.find_by(name: user_input)
   add_beer_icons
   puts "#{brewery.name} is in #{brewery.city}, #{brewery.country}. Find out more from their website #{brewery.url}"
-  add_beer_icons
-  main_menu_options
 end
 
 def brewery_by_user_loc
   user_loc_brewery_list = Brewery.all.select {|brewery| brewery.city == $user.city}
   if user_loc_brewery_list.length >= 1
     add_beer_icons
-    user_loc_brewery_list.each_with_index do |brewery, i| 
+    user_loc_brewery_list.each_with_index do |brewery, i|
       puts "#{i+1}. #{brewery.name}."
     end
     add_beer_icons
@@ -56,14 +60,14 @@ end
 def brewery_by_location
   add_beer_icons
   #Change to allow searching for city or country
-  puts "Please enter the name of a city." 
+  puts "Please enter the name of a city."
   puts "Type here:"
   user_input = gets.chomp
   non_nil_brewery_list = Brewery.all.reject {|brewery| brewery.city == nil}
   brewery_list = non_nil_brewery_list.select {|brewery| brewery.city.downcase == user_input.downcase}
 
   #Change to allow for searching non exact user_inputs
-  if brewery_list.length >= 1 
+  if brewery_list.length >= 1
     puts "Here are a list of breweries in #{user_input}:"
     brewery_list.each_with_index do |brewery, i|
       puts "#{i+1}. #{brewery.name} (#{brewery.country})"
@@ -73,7 +77,7 @@ def brewery_by_location
     brewery_cities = brewery_list.map {|brewery| brewery.city}.uniq
     puts "Sorry you slurred your words. Did you mean one of these?"
     brewery_cities.each_with_index {|b_c, i| puts "#{i+1}. #{b_c}"}
-    
+
     puts "Type the number of the city to see list of breweries or quit to return to main menu."
     puts "Type here:"
     user_input_city = gets.chomp
@@ -88,7 +92,7 @@ def brewery_by_location
     # puts "Want another try?"
     # brewery_by_location
   end
-    
+
   main_menu_options
 
 end

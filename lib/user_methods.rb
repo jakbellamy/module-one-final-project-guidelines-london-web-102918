@@ -1,30 +1,14 @@
 #----USER METHODS----
-
-# user sees the general welcome message, gets prompted to log in or create new user
-
-# log in asks for name or email and validates input
-# if no record found suggest checking spelling or creating a new account
-# if user found asks for password
-# gem to star out password entry https://stackoverflow.com/questions/2338889/how-to-hide-password-input-from-terminal-in-ruby-script
-# if password is correct goes to main menu
-# if not correct suggest checking spelling or creating a new account
-
-# create account asks for user name, email and password
-# once account created goes to main menu
-
-# personalised welcome
-# main menu options now including including log out option which re-runs the whole file
-
  $user = "user"
 
 def log_in
   puts"
-██████╗ ███████╗███████╗██████╗ ███╗   ███╗███████╗
-██╔══██╗██╔════╝██╔════╝██╔══██╗████╗ ████║██╔════╝
-██████╔╝█████╗  █████╗  ██████╔╝██╔████╔██║█████╗
-██╔══██╗██╔══╝  ██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══╝
-██████╔╝███████╗███████╗██║  ██║██║ ╚═╝ ██║███████╗
-╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝"
+        ██████╗ ███████╗███████╗██████╗ ███╗   ███╗███████╗
+        ██╔══██╗██╔════╝██╔════╝██╔══██╗████╗ ████║██╔════╝
+        ██████╔╝█████╗  █████╗  ██████╔╝██╔████╔██║█████╗
+        ██╔══██╗██╔══╝  ██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══╝
+        ██████╔╝███████╗███████╗██║  ██║██║ ╚═╝ ██║███████╗
+        ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝"
   welcome
   puts ""
   puts "Do we know you or do we not?"
@@ -58,12 +42,14 @@ end
 
 def existing_user_log_in
   add_beer_icons
-  puts "Please type '1' to log in with your name or '2' to log in with your email address"
+  puts "Please type '1' to log in with your name or '2' to log in with your email address, 'back' to go back"
   user_input = gets.chomp
   if user_input == "1"
     existing_user_log_in_with_name
   elsif user_input == "2"
     existing_user_log_in_with_email
+  elsif user_input == "back"
+    log_in
   else existing_user_log_in
   end
 end
@@ -100,8 +86,14 @@ def authenticate
   user_input = STDIN.noecho(&:gets).chomp
   puts ""
   if user_input == $user.password
+    add_beer_icons
     puts "Well remembered, at least someone is sober around here"
+    add_beer_icons
+    puts "Press enter to continue"
+    gets.chomp
     main_menu_options
+  elsif user_input == "back"
+    log_in
   else authenticate
   end
 end
